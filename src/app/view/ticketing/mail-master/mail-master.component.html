@@ -1,0 +1,128 @@
+<div class="content-area">
+    <div class="col-md-12 overlay" *ngIf="showLoader">
+        <div class="loaderpos">
+            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE"
+                animationDuration=".5s">
+            </p-progressSpinner>
+        </div>
+    </div>
+    <p-breadcrumb [model]="breadcrumps" [home]="home"></p-breadcrumb>
+    <div class="col-md-12 left">
+        <div class="form-bg left">
+            <div class="row m-b-20">
+                <div class="col-md-3 left">
+                    <div class="col-md-12">
+                        <label>Name <span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" [(ngModel)]="mail.Name" />
+                    </div>
+                </div>
+                <div class="col-md-3 left">
+                    <div class="col-md-12">
+                        <label>Description <span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" [(ngModel)]="mail.Description" />
+                    </div>
+                </div>
+                <div class="col-md-3 left">
+                    <div class="col-md-12">
+                        <label>Mail Id<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="email" class="form-control" [(ngModel)]="mail.MailId" />
+                    </div>
+                </div>
+                <div class="col-md-3 left" *ngIf="maineidt">
+                    <div class="col-md-12">
+                        <label>Password<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="password" class="form-control" pPassword [(ngModel)]="mail.Password" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 left" *ngIf="maineidt">
+                    <div class="col-md-12">
+                        <label>Host<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="email" class="form-control" pInputText pKeyFilter="num" [(ngModel)]="mail.Host"
+                            maxlength="10" />
+                    </div>
+                </div>
+                <div class="col-md-3 left" *ngIf="maineidt">
+                    <div class="col-md-12">
+                        <label>Port<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="email" pInputText pKeyFilter="int" class="form-control" [(ngModel)]="mail.Port"
+                            maxlength="4" />
+                    </div>
+                </div>
+                <div class="col-md-3 left" *ngIf="maineidt">
+                    <div class="col-md-12">
+                        <label>ReplyURL<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="email" class="form-control" [(ngModel)]="mail.ReplyURL" />
+                    </div>
+                </div>
+                <div class="col-md-3 left" *ngIf="maineidt">
+                    <div class="col-md-12">
+                        <label>EnableSsl<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-12">
+                        <p-inputSwitch [(ngModel)]="mail.EnableSsl"></p-inputSwitch>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 right text-right">
+                <div class="col-md-12">
+                    <label></label>
+                </div>
+                <div class="col-md-8 right">
+                    <button *ngIf="!edit" class="btn btn-sm btn-success m-r-5" (click)="AddMail()">Submit</button>
+                    <button *ngIf="edit" class="btn btn-sm btn-success m-r-5" (click)="AddMail()">Update</button>
+                    <button class="btn btn-sm btn-danger" (click)="clear()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-bg left table-responsive">
+            <h4>Mail List</h4>
+            <p-table #dt [columns]="cols" [value]="MailList" [paginator]="true" [scrollable]="true" [responsive]="true"
+                scrollHeight="400px" [rows]="10">
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                        </th>
+                        <th style="width:6em">Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                        <td *ngFor="let col of columns" style="word-break: break-all;">
+                            {{rowData[col.field] }}
+                        </td>
+                        <td style="width:6em">
+                            <button *ngIf="rowData.sno == 1 || rowData.sno == 2" class="btn btn-sm btn-info"
+                                (click)="GetMail(rowData)"><i class="fa fa-pencil"></i></button>
+                            <button *ngIf="rowData.sno != 1 && rowData.sno != 2" class="btn btn-sm btn-info"
+                                (click)="GetOtherMail(rowData)"><i class="fa fa-pencil"></i></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

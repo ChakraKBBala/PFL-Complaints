@@ -1,0 +1,94 @@
+<div class="content-area">
+    <div class="col-md-12 overlay" *ngIf="showLoader">
+            <div class="loaderpos">
+                <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE"
+                    animationDuration=".5s">
+                </p-progressSpinner>
+            </div>
+        </div>
+    <p-breadcrumb [model]="breadcrumps" [home]="home"></p-breadcrumb>
+    <div class="col-md-12 left">
+        <div class="form-bg left">
+            <div class="col-md-3 left">
+                <div class="col-md-12">
+                    <label>From Date <span class="red">*</span></label>
+                </div>
+                <div class="col-md-12">
+                    <p-calendar showButtonBar="true" appendTo="body" [monthNavigator]="true" [yearNavigator]="true"
+                        yearRange="2000:2030" dateFormat="dd/mm/yy" [(ngModel)]="ticket.dtefrom" name="dtefrom">
+                    </p-calendar>
+                </div>
+            </div>
+            <div class="col-md-3 left">
+                <div class="col-md-12">
+                    <label>To Date <span class="red">*</span></label>
+                </div>
+                <div class="col-md-12">
+                    <p-calendar showButtonBar="true" appendTo="body" [monthNavigator]="true" [yearNavigator]="true"
+                        yearRange="2000:2030" dateFormat="dd/mm/yy" [(ngModel)]="ticket.dteto" name="dteto">
+                    </p-calendar>
+                </div>
+            </div>
+            <div class="col-md-3 left">
+                <div class="col-md-12">
+                    <label>Reply Type</label>
+                </div>
+                <div class="col-md-12">
+                    <select class="form-control" [(ngModel)]="ticket.replytype">
+                        <option value="All">All</option>
+                        <option value="Explanation">Explanation</option>
+                        <option value="Replacement">Replacement</option>
+                        <option value="Repay">Repay</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 left">
+                <div class="col-md-12">
+                    <label>Status</label>
+                </div>
+                <div class="col-md-12">
+                    <select class="form-control" [(ngModel)]="ticket.status">
+                        <option value="All">All</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 right text-right">
+                <div class="col-md-12">
+                    <label></label>
+                </div>
+                <div class="col-md-8 right">
+                    <button class="btn btn-sm btn-success m-r-5" (click)="GetTickets()"><i class="fa fa-search m-r-5"></i>Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-bg left table-responsive">
+            <h4>Ticket Report</h4>
+            <p-table #dt [columns]="cols" [value]="TicketList" [paginator]="true" [scrollable]="true" [responsive]="true"
+                scrollHeight="400px" [rows]="10">
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                        <td *ngFor="let col of columns" style="word-break: break-all;">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

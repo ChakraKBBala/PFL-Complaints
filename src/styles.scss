@@ -1,0 +1,140 @@
+body{background-color: #eaeaea !important}
+.bg {
+    background: url(./assets/img/cloth.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.login
+{
+    background-color: #fff;
+    margin: 10.5% auto;
+    max-width: 380px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 1px 1px 3px 0px rgba(45, 45, 45, 0.62);
+    border-radius: 5px;
+    padding-top: 18px;
+}
+.header
+{
+    background: rgb(0,38,102);
+    background: linear-gradient(42deg, rgba(0,38,102,1) 0%, rgba(1,112,135,1) 100%);
+    padding: 10px;
+    height: auto;
+    position: fixed !important;
+    box-shadow: 1px 2px 3px 1px #a2a2a2;
+    z-index:20
+}
+.content-area{margin-top: 55px;float: left;width:100%;}
+.green {color: green}
+.red{color:red}
+.left{float: left;}
+.red{color:red}
+.m-t-20{margin-top: 20px}
+.m-t-10{margin-top: 10px}
+.m-b-20{margin-bottom: 20px}
+.m-r-20{margin-right: 20px}
+.m-r-5{margin-right: 5px}
+.m-r-10{margin-right: 10px}
+.form-bg{background-color: #fff;padding:20px;width: 100%;margin-top: 15px;border: 1px solid #cecece;border-radius: 5px}
+.ui-panel-content .font-weight-bold {margin-right: 10px;}
+.right{float: right;}
+.ui-breadcrumb ul {float: right;}
+.ui-card-body{border:1px solid #dadada}
+.overlay {
+    position: fixed !important;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(254, 254, 254, 0.73);
+    z-index: 3;
+    cursor: pointer;
+}
+.overlay1 {
+    position: fixed !important;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(254, 254, 254, 0.73);
+    z-index: 3;
+    cursor: pointer;
+}
+.loaderpos {
+    position: fixed;
+    top: 50%;
+    left: 50%
+}
+p-panel .ui-panel {margin-bottom:20px}
+ul li {list-style: none;}
+.full-width{width:100%}
+body .ui-toast .ui-toast-message.ui-toast-message-warn{
+    background-color: #ffbe18 !important;
+    color: #333 !important
+}
+body .ui-toast .ui-toast-message.ui-toast-message-success{
+    background-color:green !important;
+    color: #fff !important
+}
+body .ui-toast .ui-toast-message.ui-toast-message-error{
+    background-color:#bd2130 !important;
+    color: #fff !important
+}
+body .ui-sidebar {padding:0 !important;border: none !important}
+body .ui-sidebar .ui-sidebar-close {padding:10px !important}
+.sidemenu {text-align: center}
+.sidemenu ul li {text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+    height: 40px;
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 10px;
+    border-radius: 5px;
+}
+.sidemenu ul li i {color:#0a4373}
+.sidemenu ul li:hover {
+    background: linear-gradient(42deg, rgba(0,38,102,1) 0%, rgba(1,112,135,1) 100%);
+    color: #fff;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+.sidemenu ul li:hover i {
+    color: #00eab4;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+.btn-menu {
+    background-color: #00eab4 !important;
+    border: 1px solid #00eab4 !important;
+    color: #fff !important
+}
+.sidemenuactive {
+    background: linear-gradient(42deg, rgba(0,38,102,1) 0%, rgba(1,112,135,1) 100%);
+    color: #fff;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+.sidemenuactive ::before {
+    color: #00eab4;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+body .ui-toast .ui-toast-message.ui-toast-message-error .ui-toast-close-icon {color: #ffffff !important}
+.active i {color: #00eab4;}
+.sidemenu ul {margin:0;padding: 0;}
+.topmenu {width: 75% !important;text-align: center;}
+.ui-table-caption input[type="text"] {padding: 5px;}
+body .ui-table .ui-table-caption {background: transparent !important;border:none !important;padding-bottom: 10px !important }
+.ui-table-caption{padding: 0 !important};
+body .ui-table .ui-sortable-column.ui-state-highlight {background-color: #004c61 !important;color: #ffffff;}
+body .ui-table .ui-sortable-column.ui-state-highlight :focus {border: 1px solid #016682 !important}
+body .ui-table .ui-table-thead > tr > th {padding: 0.571em 0.857em;border: 1px solid #016984 !important;font-weight: 700;color: #ffffff !important;background-color: #016984 !important;}
+.table-responsive h4 {position:absolute;}

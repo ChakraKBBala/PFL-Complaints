@@ -1,0 +1,91 @@
+<div class="content-area">
+    <div class="col-md-12 overlay" *ngIf="showLoader">
+        <div class="loaderpos">
+            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE"
+                animationDuration=".5s">
+            </p-progressSpinner>
+        </div>
+    </div>
+    <p-breadcrumb [model]="breadcrumps" [home]="home"></p-breadcrumb>
+    <div class="col-md-12">
+        <div class="form-bg left">
+            <h3 class="text-center m-b-20">Ticket Detail</h3>
+            <div class="col-md-6 left TicketDetails">
+                <p-panel header="Basic Ticket Information" [toggleable]="true">
+                    <div class="col-md-12 row" *ngIf="ticketdetails">
+                        <div class="col-md-6 left">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">Ticket Status : </label>
+                                <span>{{ticketdetails.TicketStatus}}</span>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">Created Date : </label>
+                                <span>{{ticketdetails.TicketDate}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 left">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">PO No : </label>
+                                <span>{{ticketdetails.PONumber}}</span>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">Ticket From : </label>
+                                <span>{{ticketdetails.TicketFrom}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 left">
+                            <div class="col-md-12">
+                                <label class="font-weight-bold">Message : </label>
+                                <span>{{ticketdetails.Message}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </p-panel>
+                <div *ngIf="ticketdetails?.TicketStatus != 'Closed'">
+                    <p-panel header="Post a Message" [toggleable]="true">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <label>Type<span class="red">*</span></label>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" [(ngModel)]="post.replytype">
+                                    <option value="Explanation">Explanation</option>
+                                    <option value="Replacement">Replacement</option>
+                                    <option value="Repay">Repay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <label>Message<span class="red">*</span></label>
+                            </div>
+                            <div class="col-md-12">
+                                <textarea class="form-control full-width" [(ngModel)]="post.message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 m-t-10 text-right">
+                            <button class="btn btn-sm btn-success m-r-5" (click)="submitPost()">Submit</button>
+                            <button class="btn btn-sm btn-danger"
+                                [routerLink]="['/PFL/Tickets/TicketList']">Cancel</button>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+            <div class="col-md-6 left m-b-20">
+                <p-panel header="Feedbacks" [toggleable]="true" class="m-t-20">
+                    <p-scrollPanel [style]="{width: '100%', height: '335px'}">
+                        <div class="row">
+                            <ul class="full-width" *ngFor="let data of Comments" class="col-md-12">
+                                <p-card>
+                                    <label class="font-weight-bold">{{data.ReplyFrom}}</label>
+                                    <p>{{data.ReplyMessage}}</p>
+                                    <p class="text-right" style="font-size: 10px">Posted On : {{data.ReplyDate}}</p>
+                                </p-card>
+                            </ul>
+                        </div>
+                    </p-scrollPanel>
+                </p-panel>
+            </div>
+        </div>
+    </div>
+</div>

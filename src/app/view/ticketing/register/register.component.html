@@ -1,0 +1,109 @@
+<div class="content-area">
+    <p-toast position="center" key="c" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000">
+        <ng-template let-message pTemplate="message">
+            <div style="text-align: center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                <h3>{{message.summary}}</h3>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-6">
+                    <button type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></button>
+                </div>
+                <div class="ui-g-6">
+                    <button type="button" pButton (click)="onReject()" label="No" class="ui-button-secondary"></button>
+                </div>
+            </div>
+        </ng-template>
+    </p-toast>
+    <div class="col-md-12 overlay" *ngIf="showLoader">
+        <div class="loaderpos">
+            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE"
+                animationDuration=".5s">
+            </p-progressSpinner>
+        </div>
+    </div>
+    <p-breadcrumb [model]="breadcrumps" [home]="home"></p-breadcrumb>
+    <div class="col-md-12 left">
+        <div class="form-bg left">
+            <div class="col-md-3 left">
+                <div class="col-md-12">
+                    <label>Email <span class="red">*</span></label>
+                </div>
+                <div class="col-md-12">
+                    <input type="email" class="form-control" [(ngModel)]="register.Email" />
+                </div>
+            </div>
+            <div class="col-md-3 left" *ngIf="!edit">
+                <div class="col-md-12">
+                    <label>Password <span class="red">*</span></label>
+                </div>
+                <div class="col-md-12">
+                    <input type="password" class="form-control" pPassword [(ngModel)]="register.Password" />
+                </div>
+            </div>
+            <div class="col-md-3 left" *ngIf="!edit">
+                <div class="col-md-12">
+                    <label>Confirm Password<span class="red">*</span></label>
+                </div>
+                <div class="col-md-12">
+                    <input type="password" class="form-control" [(ngModel)]="register.cnfrmpassword" />
+                </div>
+            </div>
+            <div class="col-md-3 left">
+                <div class="col-md-12">
+                    <label>Role<span class="red">*</span></label>
+                </div>
+                <div class="col-md-12">
+                    <select class="form-control" [(ngModel)]="register.RoleId">
+                        <option *ngFor="let role of RoleList" [ngValue]="role.RoleId">{{role.RoleName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 right text-right">
+                <div class="col-md-12">
+                    <label></label>
+                </div>
+                <div class="col-md-8 right">
+                    <button *ngIf="!edit" class="btn btn-sm btn-success m-r-5" (click)="CreateUser()">Submit</button>
+                    <button *ngIf="edit" class="btn btn-sm btn-success m-r-5" (click)="CreateUser()">Update</button>
+                    <button class="btn btn-sm btn-danger" (click)="clear()">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-bg left table-responsive">
+            <h4>Users List</h4>
+            <p-table #dt [columns]="cols" [value]="UserList" [paginator]="true" [scrollable]="true" scrollHeight="400px"
+                [rows]="10">
+                <ng-template pTemplate="caption">
+                    <div style="text-align: right">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                        </th>
+                        <th style="width:10em">Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                        <td *ngFor="let col of columns" style="word-break: break-all;">
+                            {{rowData[col.field]}}
+                        </td>
+                        <td style="width:10em">
+                            <button class="btn btn-sm btn-success m-r-5" (click)="edituser(rowData)"><i
+                                    class="fa fa-pencil"></i></button>
+                            <button class="btn btn-sm btn-danger" (click)="deleteuser(rowData)"><i
+                                    class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="col-md-12 header">
+    <button type="text" (click)="display = true" label="Show" class="btn btn-sm btn-menu left"><i
+            class="fa fa-bars"></i></button>
+    <div class="col-md-1 col-sm-3 left topmenu">
+        <h4 class="text-white">PREMIER</h4>
+    </div>
+    <button type="text" (click)="logout()" label="Show" class="btn btn-sm btn-danger pull-right"><i
+            class="fa fa-sign-out"></i>
+    </button>
+</div>
+<p-sidebar [(visible)]="display">
+    <div class="col-md-8 m-t-10">
+        <h4>PREMIER</h4>
+    </div>
+    <hr>
+    <div class="col-md-12 sidemenu">
+        <div class="col-md-12 user-img">
+            <img src="assets/img/man.png" style="height: 100px" />
+            <div class="user-details  m-t-10">
+                <p class="font-weight-bold">{{UserName}}</p>
+            </div>
+        </div>
+        <hr style="margin-bottom: 0">
+        <ul>
+            <li [routerLinkActive]="['sidemenuactive']" [routerLink]="['/PFL/Tickets/TicketList']">
+                <span><i class="fa fa-th-list m-r-10"></i>Ticket List</span>
+            </li>
+            <li [routerLinkActive]="['sidemenuactive']" [routerLink]="['/PFL/Tickets/Ticket-Report']">
+                <span><i class="fa fa-bar-chart m-r-10"></i>Ticket Report</span>
+            </li>
+            <li [routerLinkActive]="['sidemenuactive']" [routerLink]="['/PFL/Tickets/users']">
+                <span><i class="fa fa-user m-r-10"></i>User Creation</span>
+            </li>
+            <li [routerLinkActive]="['sidemenuactive']" [routerLink]="['/PFL/Tickets/Mail-Master']">
+                <span><i class="fa fa-user m-r-10"></i>Mail Master</span>
+            </li>
+            <li [routerLinkActive]="['sidemenuactive']" (click)="logout()">
+                <span><i class="fa fa-sign-out m-r-10"></i>Log-Out</span>
+            </li>
+        </ul>
+    </div>
+</p-sidebar>
+<router-outlet></router-outlet>
